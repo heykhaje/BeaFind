@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Temukan bantuan dana pendidikan dari berbagai instansi nasional maupun internasional.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function BeasiswaPage({
   searchParams,
 }: {

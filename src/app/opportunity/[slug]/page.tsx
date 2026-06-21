@@ -8,6 +8,8 @@ interface OpportunityPageProps {
   params: Promise<{ slug: string }>;
 }
 
+export const dynamic = "force-dynamic";
+
 export default async function OpportunityPage({ params }: OpportunityPageProps) {
   const { slug } = await params;
   const opportunity = await getOpportunityBySlug(slug);

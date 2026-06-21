@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Asah kemampuanmu dan raih prestasi di berbagai kompetisi bergengsi.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function LombaPage() {
   const items = await getOpportunitiesByCategory("lomba");
 

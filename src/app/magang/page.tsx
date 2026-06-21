@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Dapatkan pengalaman profesional di perusahaan terkemuka dan startup inovatif.",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function MagangPage({
   searchParams,
 }: {

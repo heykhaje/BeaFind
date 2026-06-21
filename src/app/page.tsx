@@ -6,6 +6,8 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { NewsletterSection } from "@/components/home/NewsletterSection";
 import { StatsSection } from "@/components/home/StatsSection";
 
+export const dynamic = "force-dynamic";
+
 export default function HomePage() {
   return (
     <PageTransition>

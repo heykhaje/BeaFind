@@ -6,11 +6,7 @@ import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { getLombaSlugs, getOpportunityBySlug } from "@/data/opportunities";
 import { categoryBadgeStyles, categoryLabels } from "@/lib/utils";
 
-export const revalidate = 3600;
-
-export async function generateStaticParams() {
-  return getLombaSlugs();
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
