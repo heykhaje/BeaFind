@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id            String        @id @default(cuid())
+  name          String
+  email         String        @unique
+  password      String
+  image         String?
+  role          Role          @default(USER)
+  opportunities Opportunity[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model Opportunity {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  organization   String
+  category       String
+  deadline       String
+  deadlineUrgent Boolean  @default(false)
+  description    String   @db.Text
+  location       String
+  requirements   Json
+  benefits       Json
+  featured       Boolean  @default(false)
+  socialMedia    String?
+  website        String?
+  registrationLink String?
+  
+  status         Status   @default(PENDING)
+  authorId       String
+  author         User     @relation(fields: [authorId], references: [id])
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
