@@ -3,6 +3,7 @@ import { getOpportunityBySlug } from "@/data/opportunities";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { categoryBadgeStyles, categoryLabels } from "@/lib/utils";
 import Link from "next/link";
+import { SaveButton } from "@/components/ui/SaveButton";
 
 interface OpportunityPageProps {
   params: Promise<{ slug: string }>;
@@ -105,6 +106,10 @@ export default async function OpportunityPage({ params }: OpportunityPageProps) 
             DAFTAR SEKARANG
           </a>
           <p className="mt-4 text-center text-sm text-outline dark:text-[#94a3b8]">Anda akan diarahkan ke halaman pendaftaran resmi penyelenggara.</p>
+          
+          <div className="mt-6 w-full max-w-md">
+            <SaveButton opportunityId={opportunity.id} />
+          </div>
         </div>
       </div>
     </main>

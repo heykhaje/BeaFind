@@ -27,6 +27,7 @@ model User {
   image         String?
   role          Role          @default(USER)
   opportunities Opportunity[]
+  savedOpportunities SavedOpportunity[]
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 }
@@ -54,4 +55,16 @@ model Opportunity {
   
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  savedBy        SavedOpportunity[]
+}
+
+model SavedOpportunity {
+  id            String      @id @default(cuid())
+  userId        String
+  opportunityId String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  opportunity   Opportunity @relation(fields: [opportunityId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+
+  @@unique([userId, opportunityId])
 }

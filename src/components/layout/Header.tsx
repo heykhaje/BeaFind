@@ -143,6 +143,14 @@ export function Header() {
                     Buat Pengajuan
                   </Link>
                   <Link 
+                    href="/saved" 
+                    onClick={() => setProfileOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-sm font-semibold hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <MaterialIcon name="bookmark" className="text-lg" />
+                    Tersimpan
+                  </Link>
+                  <Link 
                     href="/profile" 
                     onClick={() => setProfileOpen(false)}
                     className="flex items-center gap-2 px-4 py-2 text-sm font-semibold hover:bg-gray-100 dark:hover:bg-gray-800"
@@ -212,6 +220,13 @@ export function Header() {
                   className="text-label-md font-semibold text-on-surface-variant"
                 >
                   Profile Saya ({user.name})
+                </Link>
+                <Link
+                  href="/saved"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-label-md font-semibold text-on-surface-variant"
+                >
+                  Tersimpan
                 </Link>
                 <button
                   onClick={() => { setMobileOpen(false); handleLogout(); }}

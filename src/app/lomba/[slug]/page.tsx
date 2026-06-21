@@ -5,6 +5,7 @@ import { PageTransition } from "@/components/ui/PageTransition";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
 import { getLombaSlugs, getOpportunityBySlug } from "@/data/opportunities";
 import { categoryBadgeStyles, categoryLabels } from "@/lib/utils";
+import { SaveButton } from "@/components/ui/SaveButton";
 
 export const dynamic = "force-dynamic";
 
@@ -115,13 +116,7 @@ export default async function LombaDetailPage({
           >
             Daftar Sekarang
           </button>
-          <button
-            type="button"
-            className="flex w-full items-center justify-center gap-2 rounded-lg border border-outline-variant py-3 text-label-md transition-all hover:bg-surface-container-low dark:border-[#475569]"
-          >
-            <MaterialIcon name="bookmark" />
-            Simpan
-          </button>
+          <SaveButton opportunityId={opportunity.id} />
         </aside>
       </div>
     </PageTransition>

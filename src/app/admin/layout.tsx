@@ -27,6 +27,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <Link href="/admin/pending" className="flex items-center gap-3 rounded-xl p-3 font-bold transition-colors hover:bg-black/5 dark:hover:bg-white/10">
             <MaterialIcon name="pending_actions" /> Menunggu ACC
           </Link>
+          <Link href="/admin/published" className="flex items-center gap-3 rounded-xl p-3 font-bold transition-colors hover:bg-black/5 dark:hover:bg-white/10">
+            <MaterialIcon name="published_with_changes" /> Diterbitkan
+          </Link>
           <Link href="/admin/add" className="flex items-center gap-3 rounded-xl p-3 font-bold transition-colors hover:bg-black/5 dark:hover:bg-white/10">
             <MaterialIcon name="post_add" /> Tambah Info Baru
           </Link>
