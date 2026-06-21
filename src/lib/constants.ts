@@ -3,8 +3,7 @@ export const siteConfig = {
   title: "BeaFind - Temukan Peluang Masa Depanmu",
   description:
     "Satu platform untuk menemukan peluang akademik, pengembangan diri, dan karier bagi mahasiswa Indonesia.",
-  heroImage:
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuC12smeVL4nyt8Sye-icAoul4KYPdK5ewN9HL4SFOL0yP5vS75sOE5Oe3C5791KD2VBDJjScp-JeKDC13kExtjKsabP5GN6qtFB-Umx6_p8bjPram5syx5WIWJ7ZVXJzkVEu5yVOXqPG3L6NbtbwpabICLI0oAtQNQ5IPXj8VUuZS1XzRuXxM4ya-NBEuK1ye3iRWBOo--IqI9GrNTJ3xbSBT8LmtU3XMIGjckFtOBXww_RBSXbmZmtAJK80RO6e4ApYnORO_SuzSs",
+  heroImage: "/hero-image.png",
 };
 
 export const stats = [
