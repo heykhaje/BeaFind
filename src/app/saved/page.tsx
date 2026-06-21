@@ -21,7 +21,7 @@ export default function SavedPage() {
         return res.json();
       })
       .then((data) => {
-        // data berbentuk [{ opportunity: { ... } }, ...]
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         setSavedOpportunities(data.map((item: any) => item.opportunity));
         setLoading(false);
       })
@@ -52,7 +52,7 @@ export default function SavedPage() {
         <div className="card-shadow flex flex-col items-center justify-center rounded-3xl border-4 border-black bg-surface-white py-20 text-center dark:border-white dark:bg-[#1e293b]">
           <h2 className="mb-2 text-2xl font-bold">Belum ada info yang disimpan</h2>
           <p className="text-on-surface-variant dark:text-[#94a3b8]">
-            Anda bisa menyimpan info peluang menarik dengan menekan tombol "Simpan" di halaman detail.
+            Anda bisa menyimpan info peluang menarik dengan menekan tombol &quot;Simpan&quot; di halaman detail.
           </p>
         </div>
       ) : (
