@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "BeaFind",
-  title: "Academic Nexus - Temukan Peluang Masa Depanmu",
+  title: "BeaFind - Temukan Peluang Masa Depanmu",
   description:
     "Satu platform untuk menemukan peluang akademik, pengembangan diri, dan karier bagi mahasiswa Indonesia.",
   heroImage:
