@@ -42,12 +42,12 @@ export function CategoriesSection() {
               href={cat.href}
               className="group card-hover card-shadow block overflow-hidden rounded-xl border border-outline-variant bg-surface-white p-8 dark:border-[#334155] dark:bg-[#1e293b]"
             >
-              <div className="mb-6 flex h-20 w-20 items-center justify-center">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center">
                 <Image 
                   src={cat.imgSrc} 
                   alt={`Logo ${cat.title}`} 
-                  width={80} 
-                  height={80} 
+                  width={56} 
+                  height={56} 
                   className="object-contain"
                 />
               </div>
