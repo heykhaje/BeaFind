@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
+import { ConfirmModal } from "@/components/ui/ConfirmModal";
 
 export default function AdminPublishedPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [opportunities, setOpportunities] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const fetchPending = async () => {
     try {
@@ -26,16 +29,22 @@ export default function AdminPublishedPage() {
     fetchPending();
   }, []);
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Yakin ingin menghapus peluang ini? Data tidak dapat dikembalikan.")) return;
+  const requestDelete = (id: string) => {
+    setDeleteId(id);
+    setModalOpen(true);
+  };
+
+  const handleDelete = async () => {
+    if (!deleteId) return;
+    setModalOpen(false);
 
     try {
-      const res = await fetch(`/api/admin/opportunities/${id}`, {
+      const res = await fetch(`/api/admin/opportunities/${deleteId}`, {
         method: "DELETE",
       });
       if (res.ok) {
         // Remove from list
-        setOpportunities(opportunities.filter((o) => o.id !== id));
+        setOpportunities(opportunities.filter((o) => o.id !== deleteId));
       } else {
         alert("Gagal menghapus info.");
       }
@@ -75,8 +84,8 @@ export default function AdminPublishedPage() {
               </div>
               <div className="flex gap-4">
                 <button 
-                  onClick={() => handleDelete(opp.id)}
-                  className="rounded-xl border-2 border-black bg-red-100 px-4 py-2 font-bold text-red-700 transition-transform hover:-translate-y-1 active:translate-y-0"
+                  onClick={() => requestDelete(opp.id)}
+                  className="flex items-center gap-1 rounded-xl border-2 border-black bg-red-100 px-4 py-2 font-bold text-red-700 transition-transform hover:-translate-y-1 active:translate-y-0 dark:border-white dark:bg-red-900/30 dark:text-red-400"
                 >
                   <MaterialIcon name="delete" /> Hapus
                 </button>
@@ -85,6 +94,16 @@ export default function AdminPublishedPage() {
           ))}
         </div>
       )}
+
+      <ConfirmModal
+        isOpen={modalOpen}
+        title="Hapus Peluang"
+        message="Yakin ingin menghapus peluang ini? Data tidak dapat dikembalikan."
+        onConfirm={handleDelete}
+        onCancel={() => setModalOpen(false)}
+        confirmText="Hapus"
+        type="danger"
+      />
     </div>
   );
 }

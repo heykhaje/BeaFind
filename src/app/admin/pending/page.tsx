@@ -2,11 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { MaterialIcon } from "@/components/ui/MaterialIcon";
+import { ConfirmModal } from "@/components/ui/ConfirmModal";
 
 export default function AdminPendingPage() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [opportunities, setOpportunities] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [actionData, setActionData] = useState<{ id: string; status: "APPROVED" | "REJECTED" } | null>(null);
 
   const fetchPending = async () => {
     try {
@@ -26,8 +29,15 @@ export default function AdminPendingPage() {
     fetchPending();
   }, []);
 
-  const handleAction = async (id: string, status: "APPROVED" | "REJECTED") => {
-    if (!confirm(`Yakin ingin ${status === "APPROVED" ? "Menerima (ACC)" : "Menolak"} pengajuan ini?`)) return;
+  const requestAction = (id: string, status: "APPROVED" | "REJECTED") => {
+    setActionData({ id, status });
+    setModalOpen(true);
+  };
+
+  const executeAction = async () => {
+    if (!actionData) return;
+    const { id, status } = actionData;
+    setModalOpen(false);
 
     try {
       const res = await fetch(`/api/admin/opportunities/${id}`, {
@@ -77,14 +87,14 @@ export default function AdminPendingPage() {
               </div>
               <div className="flex gap-4">
                 <button 
-                  onClick={() => handleAction(opp.id, "REJECTED")}
-                  className="rounded-xl border-2 border-black bg-red-100 px-4 py-2 font-bold text-red-700 transition-transform hover:-translate-y-1 active:translate-y-0"
+                  onClick={() => requestAction(opp.id, "REJECTED")}
+                  className="rounded-xl border-2 border-black bg-red-100 px-4 py-2 font-bold text-red-700 transition-transform hover:-translate-y-1 active:translate-y-0 dark:border-white dark:bg-red-900/30 dark:text-red-400"
                 >
                   Tolak
                 </button>
                 <button 
-                  onClick={() => handleAction(opp.id, "APPROVED")}
-                  className="rounded-xl border-2 border-black bg-green-500 px-4 py-2 font-bold text-white transition-transform hover:-translate-y-1 active:translate-y-0"
+                  onClick={() => requestAction(opp.id, "APPROVED")}
+                  className="rounded-xl border-2 border-black bg-green-500 px-4 py-2 font-bold text-white transition-transform hover:-translate-y-1 active:translate-y-0 dark:border-white"
                 >
                   Terima (ACC)
                 </button>
@@ -93,6 +103,16 @@ export default function AdminPendingPage() {
           ))}
         </div>
       )}
+
+      <ConfirmModal
+        isOpen={modalOpen}
+        title={actionData?.status === "APPROVED" ? "Terima Pengajuan" : "Tolak Pengajuan"}
+        message={`Yakin ingin ${actionData?.status === "APPROVED" ? "Menerima (ACC)" : "Menolak"} pengajuan ini?`}
+        onConfirm={executeAction}
+        onCancel={() => setModalOpen(false)}
+        confirmText={actionData?.status === "APPROVED" ? "Terima" : "Tolak"}
+        type={actionData?.status === "APPROVED" ? "success" : "danger"}
+      />
     </div>
   );
 }
