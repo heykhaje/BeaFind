@@ -40,7 +40,7 @@ export function CategoriesSection() {
           <FadeIn key={cat.href} delay={index * 0.1}>
             <Link
               href={cat.href}
-              className="group card-hover card-shadow block overflow-hidden rounded-xl border border-outline-variant bg-surface-white p-8 dark:border-[#334155] dark:bg-[#1e293b]"
+              className="group card-hover card-shadow flex h-full flex-col overflow-hidden rounded-xl border border-outline-variant bg-surface-white p-8 dark:border-[#334155] dark:bg-[#1e293b]"
             >
               <div className="mb-6 flex h-14 w-14 items-center justify-center">
                 <Image 
@@ -52,10 +52,10 @@ export function CategoriesSection() {
                 />
               </div>
               <h3 className="mb-3 text-headline-sm font-semibold">{cat.title}</h3>
-              <p className="mb-6 text-body-md text-on-surface-variant dark:text-[#94a3b8]">
+              <p className="mb-6 flex-1 text-body-md text-on-surface-variant dark:text-[#94a3b8]">
                 {cat.description}
               </p>
-              <span className="flex items-center gap-2 text-label-md font-semibold text-primary transition-all group-hover:gap-4">
+              <span className="mt-auto flex items-center gap-2 text-label-md font-semibold text-primary transition-all group-hover:gap-4">
                 {cat.cta}
                 <MaterialIcon name="arrow_forward" />
               </span>
